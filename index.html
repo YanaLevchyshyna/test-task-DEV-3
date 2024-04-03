@@ -8,8 +8,12 @@
     <title>test-task-DEV-3</title>
   </head>
   <body>
-    <input type="text" id="name-input" placeholder="Please enter your name" />
-    <span id="name-output">Your input should be here</span>
+    <div class="wrapper">
+      <input type="text" class="text-input" placeholder="Enter some text" />
+      <span id="drag" class="text-output" draggable="true"></span>
+      <button type="button" class="click-me-button">Click me!</button>
+    </div>
+
     <script src="js/index.js" type="module"></script>
   </body>
 </html>
