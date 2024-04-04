@@ -11,7 +11,6 @@ function onClick() {
 
 function onMouseDown(e) {
   console.log('event mousedown', e);
-
   const drag = e.target;
 
   drag.style.position = 'absolute';
@@ -19,21 +18,20 @@ function onMouseDown(e) {
 
   document.body.append(drag);
 
-  function moveDrag(x, y) {
-    drag.style.left = x - drag.offsetWidth / 2 + 'px';
-    drag.style.top = y - drag.offsetHeight / 2 + 'px';
+  function moveDrag(pageX, pageY) {
+    drag.style.left = pageX - drag.offsetWidth / 2 + 'px';
+    drag.style.top = pageY - drag.offsetHeight / 2 + 'px';
   }
 
-  moveDrag(e.x, e.y);
+  moveDrag(e.pageX, e.pageY);
 
   function onMouseMove(e) {
-    moveDrag(e.x, e.y);
+    moveDrag(e.pageX, e.pageY);
   }
 
   document.addEventListener('mousemove', onMouseMove);
 
   // Обробник події 'mouseup' видаляє обробник 'mousemove' після відпускання миші
-
   drag.onmouseup = function () {
     document.removeEventListener('mousemove', onMouseMove);
     drag.onmouseup = null;
@@ -41,6 +39,7 @@ function onMouseDown(e) {
 }
 
 // Забороняємо стандартну поведінку перетягування
+
 drag.ondragstart = function () {
   return false;
 };
